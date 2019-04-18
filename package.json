@@ -1,0 +1,15 @@
+{
+  "name": "js-algorithms",
+  "version": "1.0.0",
+  "description": "* Rabin-Karp    * TODO: add modulation to hash function     * see https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^24.7.1"
+  },
+  "scripts": {
+    "test": "./node_modules/jest/bin/jest.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
