@@ -7,5 +7,8 @@
 * Linked list
 * Doubly linked list
 * Queue
+* Stack
 * BFS
+* DFS
 * Trie
+
