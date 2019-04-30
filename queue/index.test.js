@@ -6,15 +6,15 @@ describe('Queue', () => {
     describe('when the queue is empty', () => {
       it('returns true', () => {
         const queue = new Queue;
-        queue.enqueue(1);
-        expect(queue.isEmpty()).toEqual(false);
+        expect(queue.isEmpty()).toEqual(true);
       });
     });
 
     describe('when the queue is not empty', () => {
       it('returns false', () => {
         const queue = new Queue;
-        expect(queue.isEmpty()).toEqual(true);
+        queue.enqueue(1);
+        expect(queue.isEmpty()).toEqual(false);
       });
     });
   });
