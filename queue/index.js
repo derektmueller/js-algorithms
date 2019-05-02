@@ -14,6 +14,10 @@ class Queue {
     return this.head === null;
   }
 
+  first() {
+    return this.head.val;
+  }
+
   enqueue(val) {
     const node = new Node(val);
 
