@@ -84,10 +84,6 @@ function bidirectionalSearch(source, target) {
     }
 
     currDepth++;
-
-    if(currDepth > 10) {
-      break;
-    }
   }
 
   return [];
