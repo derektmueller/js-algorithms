@@ -1,15 +1,22 @@
 
-## Algorithms in JavaScript
+## Algorithms & Data Structures in JavaScript
+
+### Algorithms
 
 * Rabin-Karp 
 * Floyd cycle detection
 * Radix sort
+* BFS
+* DFS
+* Bidirectional search
+* Topological sort
+
+### Data Structures
+
 * Linked list
 * Doubly linked list
 * Queue
 * Stack
-* BFS
-* DFS
+* Binary heap
 * Trie
-* Bidirectional search
 
