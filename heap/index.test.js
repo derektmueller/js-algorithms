@@ -3,6 +3,18 @@ const {Heap} = require('./');
 
 describe('Heap', () => {
   describe('min heap', () => {
+    describe('constructor', () => {
+      describe('when an array is passed in', () => {
+        it('initializes the heap', () => {
+          const heap = new Heap({array: [3, 2, 1]});
+
+          expect(heap.extract()).toEqual(1);
+          expect(heap.extract()).toEqual(2);
+          expect(heap.extract()).toEqual(3);
+        });
+      });
+    });
+
     describe('updateKey', () => {
       it('adjusts key at given index, maintaining heap order', () => {
         const heap = new Heap;
@@ -29,6 +41,7 @@ describe('Heap', () => {
         expect(heap.getTop()).toEqual(1);
       });
     });
+
     describe('isEmpty', () => {
       describe('when heap is empty', () => {
         it('returns true', () => {
@@ -82,13 +95,13 @@ describe('Heap', () => {
     describe('insert', () => {
       it('returns undefined', () => {
         let val = 1;
-        expect((new Heap((a, b) => a > b)).insert(val)).toEqual(undefined);
+        expect((new Heap({compare: (a, b) => a > b})).insert(val)).toEqual(undefined);
       });
     });
 
     describe('extract', () => {
       it('returns smallest value', () => {
-        const heap = new Heap((a, b) => a > b);
+        const heap = new Heap({compare: (a, b) => a > b});
         heap.insert(1);
         heap.insert(2);
         heap.insert(3);

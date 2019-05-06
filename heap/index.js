@@ -1,8 +1,18 @@
 
 class Heap {
-  constructor(compare = (a, b) => a < b) {
-    this.arr = [];
+  constructor({array = [], compare = ((a, b) => a < b)} = {}) {
+    this.arr = array;
     this.compare = compare; 
+    
+    if(array.length) {
+      this.buildHeap();
+    }
+  }
+
+  buildHeap() {
+    for(let i = Math.floor(this.arr.length / 2) - 1; i >= 0; --i) {
+      this.heapifyDown(i);
+    }
   }
 
   getParent(i) {

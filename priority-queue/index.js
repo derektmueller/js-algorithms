@@ -2,8 +2,8 @@
 const {Heap} = require('../heap');
 
 class PriorityQueue {
-  constructor(compare = (a, b) => a < b) {
-    this.heap = new Heap(compare);
+  constructor({array = [], compare = ((a, b) => a < b)} = {}) {
+    this.heap = new Heap({array, compare});
   }
 
   getTop() {
