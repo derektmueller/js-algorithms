@@ -24,17 +24,27 @@ class Heap {
   }
     
   getTop() {
-      return this.arr[0];
+    return this.arr[0];
   }  
     
   isEmpty() {
-      return !this.arr.length;
+    return !this.arr.length;
   }  
 
-  insert(val) {
-    this.arr.push(val);
-    let i = this.arr.length - 1,
-        p = this.getParent(i);
+  updateKey(i, key) {
+    const oldKey = this.arr[i];
+
+    this.arr[i] = key;
+
+    if(key < oldKey) {
+      this.heapifyUp(i);
+    } else {
+      this.heapifyDown(i);
+    }
+  }
+
+  heapifyUp(i) {
+    let p = this.getParent(i);
 
     while(i > 0 && this.compare(this.arr[i], this.arr[p])) {
       this.swap(p, i);
@@ -43,17 +53,8 @@ class Heap {
     }
   }
 
-  extract() {
-    let val = this.arr[0];
-    this.arr[0] = this.arr[this.arr.length - 1];
-    this.arr.pop();
-
-    if(this.arr.length <= 1) {
-      return val;
-    }
-
-    let i = 0,
-        left = this.getLeft(i),
+  heapifyDown(i) {
+    let left = this.getLeft(i),
         right = this.getRight(i);
 
     while(left < this.arr.length || right < this.arr.length) {
@@ -81,6 +82,23 @@ class Heap {
       left = this.getLeft(i);
       right = this.getRight(i);
     }
+  }
+
+  insert(val) {
+    this.arr.push(val);
+    this.heapifyUp(this.arr.length - 1);
+  }
+
+  extract() {
+    let val = this.arr[0];
+    this.arr[0] = this.arr[this.arr.length - 1];
+    this.arr.pop();
+
+    if(this.arr.length <= 1) {
+      return val;
+    }
+
+    this.heapifyDown(0);
 
     return val;
   }
