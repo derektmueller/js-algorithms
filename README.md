@@ -10,6 +10,7 @@
 * DFS
 * Bidirectional search
 * Topological sort
+* Dijkstra's algorithm
 
 ### Data Structures
 
@@ -18,5 +19,6 @@
 * Queue
 * Stack
 * Binary heap
+* Priority queue
 * Trie
 
