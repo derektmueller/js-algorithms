@@ -4,11 +4,10 @@ const {Heap} = require('../heap');
 class PriorityQueue {
   constructor({
       array = [], 
-      compare = ((a, b) => a < b),
-      mapValuesToIndexes = false
+      compare = ((a, b) => a < b)
     } = {}) {
 
-    this.heap = new Heap({array, compare, mapValuesToIndexes});
+    this.heap = new Heap({array, compare});
   }
 
   getTop() {
@@ -18,10 +17,6 @@ class PriorityQueue {
   isEmpty() {
     return this.heap.isEmpty();
   }  
-
-  updateKeyByValue(value, key) {
-    return this.heap.updateKeyByValue(value, key);
-  }
 
   updateKey(i, key) {
     return this.heap.updateKey(i, key);

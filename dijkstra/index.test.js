@@ -64,4 +64,58 @@ describe('dijkstra', () => {
       expect(distances.get(f)).toEqual(4);
     });
   });
+
+  describe('not all nodes reachable from source', () => {
+    it('returns shortest distance and paths to all reachable nodes', () => {
+      const a = new Node('a'),
+        b = new Node('b'),
+        c = new Node('c'),
+        d = new Node('d'),
+        e = new Node('e'),
+        f = new Node('f'),
+        weights = new Map(),
+        nodes = [a, b, c, d, e, f];
+
+      nodes.forEach(
+        node => weights.set(node, new Map()));
+
+      /*
+       * -----------------------------------
+       * v                                 |
+       * a -(1)-> b -(1)-> d               |
+       *                   |               |
+       *                  (1)              |
+       *                   v               |
+       *          c -(2)-> e        f -(1)-|
+       */
+
+      a.neighbors.push(b);
+      b.neighbors.push(d);
+      d.neighbors.push(e);
+      c.neighbors.push(e);
+      f.neighbors.push(a);
+
+      weights.get(a).set(b, 1);
+      weights.get(b).set(d, 1);
+      weights.get(c).set(e, 2);
+      weights.get(d).set(e, 1);
+      weights.get(f).set(a, 1);
+
+      const [parents, distances] = dijkstra(nodes, a, weights);
+
+      expect(parents.get(a)).toEqual(null);
+      expect(parents.get(b)).toEqual(a);
+      expect(parents.get(c)).toEqual(undefined);
+      expect(parents.get(d)).toEqual(b);
+      expect(parents.get(e)).toEqual(d);
+      expect(parents.get(f)).toEqual(undefined);
+
+      expect(distances.get(a)).toEqual(0);
+      expect(distances.get(b)).toEqual(1);
+      expect(distances.get(c)).toEqual(Infinity);
+      expect(distances.get(d)).toEqual(2);
+      expect(distances.get(e)).toEqual(3);
+      expect(distances.get(f)).toEqual(Infinity);
+    });
+  });
 });

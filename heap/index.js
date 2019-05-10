@@ -1,17 +1,12 @@
 
 class Heap {
   constructor({
-      array = [], compare = ((a, b) => a < b),
-      mapValuesToIndexes = false
+      array = [], compare = ((a, b) => a < b)
     } = {}) {
 
     this.arr = array;
     this.compare = compare; 
 
-    if(mapValuesToIndexes) {
-      this.valuesToIndexes = new Map;
-    }
-    
     if(array.length) {
       this.buildHeap();
     }
@@ -39,11 +34,6 @@ class Heap {
     const tmp = this.arr[i];
     this.arr[i] = this.arr[j];
     this.arr[j] = tmp;
-
-    if(this.valuesToIndexes) {
-      this.valuesToIndexes.set(this.arr[i], i);
-      this.valuesToIndexes.set(this.arr[j], j);
-    }
   }
     
   getTop() {
@@ -53,11 +43,6 @@ class Heap {
   isEmpty() {
     return !this.arr.length;
   }  
-
-  updateKeyByValue(value, key) {
-    const i = this.valuesToIndexes.get(value);
-    this.updateKey(i, key);
-  }
 
   updateKey(i, key) {
     const oldKey = this.arr[i];
