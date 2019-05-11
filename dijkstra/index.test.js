@@ -66,7 +66,9 @@ describe('dijkstra', () => {
   });
 
   describe('not all nodes reachable from source', () => {
-    it('returns shortest distance and paths to all reachable nodes', () => {
+    it('returns shortest distance and paths to all reachable nodes', 
+      () => {
+
       const a = new Node('a'),
         b = new Node('b'),
         c = new Node('c'),
