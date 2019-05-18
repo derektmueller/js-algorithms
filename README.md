@@ -21,4 +21,6 @@
 * Binary heap
 * Priority queue
 * Trie
+* Binary search tree
+* Red-black tree
 
