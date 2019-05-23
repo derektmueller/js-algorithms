@@ -14,6 +14,150 @@ function Node(value) {
   this.color = null;
 }
 
+function predecessor(node) {
+  if(node.left !== NullNode) {
+    return maximum(node.left);
+  } else {
+    let parent = node.parent;
+
+    while(parent !== NullNode && parent.right !== node) {
+      parent = parent.parent;
+      node = node.parent;
+    }
+
+    return parent;
+  }
+}
+
+function successor(node) {
+  if(node.right !== NullNode) {
+    return minimum(node.right);
+  } else {
+    let parent = node.parent;
+
+    while(parent !== NullNode && parent.left !== node) {
+      parent = parent.parent;
+      node = node.parent;
+    }
+
+    return parent;
+  }
+}
+
+function minimum(node) {
+  while(node.left !== NullNode) { node = node.left; }
+  return node;
+}
+
+function maximum(node) {
+  while(node.right !== NullNode) { node = node.right; }
+  return node;
+}
+
+function transplant(tree, u, v) {
+  if(u.parent === NullNode) {
+    tree.root = v;
+  } else if(u.parent.left === u) {
+    u.parent.left = v;
+    v.parent = u.parent;
+  } else {
+    u.parent.right = v;
+    v.parent = u.parent;
+  }
+}
+
+function deleteNode(tree, z) {
+  let y = z,
+    yOriginalColor = y.color,
+    x;
+  if(z.left === NullNode) {
+    x = z.right;
+    transplant(tree, z, z.right);
+  } else if(z.right === NullNode) {
+    x = z.left;
+    transplant(tree, z, z.left);
+  } else {
+    y = successor(z);
+    yOriginalColor = y.color;
+    x = y.right;
+
+    if(y.parent === z) {
+      x.parent = y;
+    } else {
+      transplant(tree, y, y.right);
+      y.right = z.right;
+      z.right.parent = y;
+    }
+
+    transplant(tree, z, y);
+    y.left = z.left;
+    y.left.parent = y;
+    y.color = z.color;
+  }
+
+  if(yOriginalColor === BLACK) {
+    deleteFixup(tree, x);
+  }
+}
+
+function deleteFixup(tree, x) {
+  while(x !== tree.root && x.color === BLACK) {
+    if(x == x.parent.left) {
+      let w = x.parent.right;
+
+      if(w.color === RED) {
+        w.color = BLACK;
+        x.parent.color = RED;
+        leftRotate(tree, x.parent);
+        w = x.parent.right;
+      }
+
+      if(w.left.color === BLACK && w.right.color === BLACK) {
+        w.color = RED;
+        x = x.parent;
+      } else if(w.right.color === BLACK) {
+        w.left.color = BLACK;
+        w.color = RED;
+        rightRotate(tree, w);
+        w = x.parent.right;
+      }
+
+      w.color = x.parent.color;
+      x.parent.color = BLACK;
+      w.right.color = BLACK;
+      leftRotate(tree, x.parent);
+      x = x.root;
+    } else {
+      let w = x.parent.left;
+
+      if(w.color === RED) {
+        w.color = BLACK;
+        x.parent.color = RED;
+        rightRotate(tree, x.parent);
+        w = x.parent.left;
+      }
+
+      if(w.left.color === BLACK && w.left.color === BLACK) {
+        w.color = RED;
+        x = x.parent;
+      } else if(w.left.color === BLACK) {
+        w.left.color = BLACK;
+        w.color = RED;
+        leftRotate(tree, w);
+        w = x.parent.left;
+      }
+
+      w.color = x.parent.color;
+      x.parent.color = BLACK;
+      w.left.color = BLACK;
+      rightRotate(tree, x.parent);
+      x = x.root;
+    }
+  }
+
+  x.color = BLACK;
+}
+
 function leftRotate(tree, x) {
   const y = x.right; 
   const xParent = x.parent;
@@ -161,11 +305,10 @@ class RedBlackTree {
     }
 
     insertFixup(this, node);
+
+    return node;
   }
 
-  delete() {
-  }
-  
   search(value) {
     const searchHelper = (node, value) => {
       if(!node) return false;
@@ -178,18 +321,6 @@ class RedBlackTree {
     };
 
     return searchHelper(this.root, value);
-  }
-
-  predecessor() {
-  }
-
-  successor() {
-  }
-
-  minimum() {
-  }
-
-  maximum() {
   }
 
   compare(value1, value2) {
@@ -230,6 +361,11 @@ module.exports = {
   RedBlackTree,
   leftRotate,
   rightRotate,
-  Node,
-  validateRBProps
+  validateRBProps,
+  predecessor,
+  successor,
+  minimum,
+  maximum,
+  deleteNode,
+  NullNode
 }
