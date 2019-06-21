@@ -5,12 +5,16 @@
 
 * Rabin-Karp 
 * Floyd cycle detection
-* Radix sort
 * BFS
 * DFS
 * Bidirectional search
 * Topological sort
 * Dijkstra's algorithm
+* Sorting:
+  * Radix Sort
+  * Merge sort
+  * Selection sort
+  * Bubble sort
 
 ### Data Structures
 
