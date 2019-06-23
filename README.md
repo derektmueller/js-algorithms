@@ -8,13 +8,15 @@
 * BFS
 * DFS
 * Bidirectional search
-* Topological sort
 * Dijkstra's algorithm
 * Sorting:
-  * Radix Sort
+  * Counting sort
+  * Radix sort
   * Merge sort
+  * Quicksort
   * Selection sort
   * Bubble sort
+  * Topological sort
 
 ### Data Structures
 
