@@ -11,10 +11,12 @@
 * Dijkstra's algorithm
 * Sorting:
   * Counting sort
+  * Bucket sort
   * Radix sort
   * Merge sort
   * Quicksort
   * Selection sort
+  * Insertion sort
   * Bubble sort
   * Topological sort
 
