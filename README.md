@@ -9,6 +9,7 @@
 * DFS
 * Bidirectional search
 * Dijkstra's algorithm
+* Quickselect
 * Sorting:
   * Counting sort
   * Bucket sort
