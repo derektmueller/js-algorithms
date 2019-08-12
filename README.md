@@ -3,13 +3,12 @@
 
 ### Algorithms
 
-* Rabin-Karp 
-* Floyd cycle detection
-* BFS
-* DFS
-* Bidirectional search
-* Dijkstra's algorithm
-* Quickselect
+* Graphs & Trees
+  * BFS
+  * DFS
+  * Bidirectional search
+  * Dijkstra's algorithm
+  * Morris traversals
 * Sorting:
   * Counting sort
   * Bucket sort
@@ -20,6 +19,9 @@
   * Insertion sort
   * Bubble sort
   * Topological sort
+* Rabin-Karp 
+* Floyd cycle detection
+* Quickselect
 
 ### Data Structures
 
